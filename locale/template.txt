@@ -1,0 +1,23 @@
+# textdomain:sickles
+Bronze Sickle=
+Steel Sickle=
+Golden Sickle=
+Bronze Scythe=
+Steel Scythe=
+Moss=
+Purple Moss=
+Blue Moss=
+Yellow Moss=
+Moss Block=
+Purple Moss Block=
+Blue Moss Block=
+Yellow Moss Block=
+Moss Stair=
+Purple Moss Stair=
+Blue Moss Stair=
+Yellow Moss Stair=
+Moss Slab=
+Purple Moss Slab=
+Blue Moss Slab=
+Yellow Moss Slab=
+Flower Petals=

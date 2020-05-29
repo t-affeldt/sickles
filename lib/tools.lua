@@ -1,8 +1,10 @@
 local is_farming_redo = minetest.get_modpath("farming") ~= nil
 		and farming ~= nil and farming.mod == "redo"
 
+local S = sickles.i18n
+
 minetest.register_tool("sickles:sickle_bronze", {
-	description = "Bronze Sickle",
+	description = S("Bronze Sickle"),
 	inventory_image = "sickles_sickle_bronze.png",
 	tool_capabilities = {
 		full_punch_interval = 0.8,
@@ -28,7 +30,7 @@ minetest.register_craft({
 })
 
 minetest.register_tool("sickles:sickle_steel", {
-	description = "Steel Sickle",
+	description = S("Steel Sickle"),
 	inventory_image = "sickles_sickle_steel.png",
 	tool_capabilities = {
 		full_punch_interval = 0.8,
@@ -54,7 +56,7 @@ minetest.register_craft({
 })
 
 minetest.register_tool("sickles:sickle_gold", {
-	description = "Golden Sickle",
+	description = S("Golden Sickle"),
 	inventory_image = "sickles_sickle_gold.png",
 	tool_capabilities = {
 		full_punch_interval = 0.8,
@@ -80,7 +82,7 @@ minetest.register_craft({
 })
 
 minetest.register_tool("sickles:scythe_bronze", {
-	description = "Bronze Scythe",
+	description = S("Bronze Scythe"),
 	inventory_image = "sickles_scythe_bronze.png",
 	tool_capabilities = {
 		full_punch_interval = 1.2,
@@ -103,7 +105,7 @@ minetest.register_craft({
 })
 
 minetest.register_tool("sickles:scythe_steel", {
-	description = "Bronze Scythe",
+	description = S("Steel Scythe"),
 	inventory_image = "sickles_scythe_steel.png",
 	tool_capabilities = {
 		full_punch_interval = 1.2,

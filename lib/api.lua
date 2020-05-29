@@ -5,8 +5,6 @@ local MAX_ITEM_WEAR = 65535
 local DEFAULT_SICKLE_USES = 120
 local DEFAULT_SCYTHE_USES = 30
 
-sickles = {}
-
 local function is_creative(playername)
 	return minetest.settings:get_bool("creative_mode")
 			or minetest.check_player_privs(playername, { creative = true })

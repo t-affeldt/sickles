@@ -1,6 +1,8 @@
 local mod_stairs = minetest.get_modpath("stairs") ~= nil
 local mod_dye = minetest.get_modpath("dye") ~= nil
 
+local S = sickles.i18n
+
 local colors = {
 	{ dye = "dark_green" },
 	{ hex = "#894adb70", name = "purple", dye = "violet" },
@@ -34,7 +36,7 @@ for _, color in ipairs(colors) do
 	end
 
 	minetest.register_node("sickles:moss" .. name_suffix, {
-		description = display_name_prefix .. "Moss",
+		description = S(display_name_prefix .. "Moss"),
 		inventory_image = "sickles_moss_item.png" .. texture_overlay,
 		wield_image = "sickles_moss_item.png" .. texture_overlay,
 		tiles = { "trunks_moss.png" .. texture_overlay },
@@ -55,7 +57,7 @@ for _, color in ipairs(colors) do
 	})
 
 	minetest.register_node("sickles:moss_block" .. name_suffix, {
-		description = display_name_prefix .. "Moss Block",
+		description = S(display_name_prefix .. "Moss Block"),
 		tiles = { "default_moss.png" .. texture_overlay },
 		is_ground_content = false,
 		groups = { snappy = 3, moss_block = 1, flammable = 2, fall_damage_add_percent = -80 },
@@ -70,8 +72,8 @@ for _, color in ipairs(colors) do
 			"sickles:moss_block" .. name_suffix,
 			{ snappy = 3, flammable = 2, fall_damage_add_percent = -80 },
 			{ "default_moss.png" .. texture_overlay },
-			display_name_prefix .. "Moss Stair",
-			display_name_prefix .. "Moss Slab",
+			S(display_name_prefix .. "Moss Stair"),
+			S(display_name_prefix .. "Moss Slab"),
 			sounds
 		)
 	end
@@ -117,7 +119,7 @@ minetest.register_craft({
 })
 
 minetest.register_node("sickles:petals", {
-	description = "Flower Petals",
+	description = S("Flower Petals"),
 	tiles = { "nature_blossom.png" },
 	inventory_image = "nature_blossom.png",
 	wield_image = "nature_blossom.png",
