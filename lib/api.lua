@@ -7,6 +7,11 @@ local DEFAULT_SCYTHE_USES = 30
 
 sickles = {}
 
+local function is_creative(playername)
+	return minetest.settings:get_bool("creative_mode")
+			or minetest.check_player_privs(playername, { creative = true })
+end
+
 local function get_wielded_item(player)
 	if not minetest.is_player(player) then return end
 	local itemstack = player:get_wielded_item()
@@ -44,12 +49,14 @@ function sickles.register_cuttable(nodename, base, item)
 			minetest.after(0, function()
 				minetest.swap_node(pos, { name = base, param2 = node.param2 })
 			end)
-			local max_uses = get_item_group(itemdef, "sickle_uses") or DEFAULT_SICKLE_USES
-			itemstack:add_wear(math.ceil(MAX_ITEM_WEAR / (max_uses - 1)))
-			if itemstack:get_count() == 0 and itemdef.sound and itemdef.sound.breaks then
-				minetest.sound_play(itemdef.sound.breaks, { pos = pos, gain = 0.5 })
+			if not is_creative(pname) then
+				local max_uses = get_item_group(itemdef, "sickle_uses") or DEFAULT_SICKLE_USES
+				itemstack:add_wear(math.ceil(MAX_ITEM_WEAR / (max_uses - 1)))
+				if itemstack:get_count() == 0 and itemdef.sound and itemdef.sound.breaks then
+					minetest.sound_play(itemdef.sound.breaks, { pos = pos, gain = 0.5 })
+				end
+				puncher:set_wielded_item(itemstack)
 			end
-			puncher:set_wielded_item(itemstack)
 		end
 	})
 end
@@ -118,8 +125,19 @@ local function harvest_and_replant(pos, player)
 		not invref:contains_item("main", seeds) then
 			return true
 		end
-		invref:remove_item("main", seeds)
-		minetest.set_node(pos, { name = seeds, param2 = 1 })
+		if not is_creative(playername) then
+			invref:remove_item("main", seeds)
+		end
+		if is_farming_redo then
+			-- plant first crop for farming redo
+			local crop_name = node_id .. "_1"
+			local crop_def = minetest.registered_nodes[crop_name]
+			if crop_def == nil then return end
+			minetest.set_node(pos, { name = crop_name, param2 = crop_def.place_param2 })
+		else
+			-- plant seeds for MTG farming
+			minetest.set_node(pos, { name = seeds, param2 = 1 })
+		end
 	end)
 	return true
 end

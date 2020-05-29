@@ -1,3 +1,6 @@
+local is_farming_redo = minetest.get_modpath("farming") ~= nil
+		and farming ~= nil and farming.mod == "redo"
+
 minetest.register_tool("sickles:sickle_bronze", {
 	description = "Bronze Sickle",
 	inventory_image = "sickles_sickle_bronze.png",
@@ -121,3 +124,13 @@ minetest.register_craft({
 		{ "", "", "group:stick" }
 	}
 })
+
+if is_farming_redo then
+	-- softly disable mithril scythe to prevent confusion
+	minetest.override_item("farming:scythe_mithril", {
+		groups = { not_in_creative_inventory = 1 }
+	})
+	minetest.clear_craft({
+		output = "farming:scythe_mithril"
+	})
+end
