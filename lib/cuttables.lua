@@ -12,6 +12,7 @@ local mod_caverealms = minetest.get_modpath("caverealms") ~= nil
 local mod_df_mapitems = minetest.get_modpath("df_mapitems") ~= nil
 local mod_df_primordial_items = minetest.get_modpath("df_primordial_items") ~= nil
 local mod_ethereal = minetest.get_modpath("ethereal") ~= nil
+local mod_gloopblocks = minetest.get_modpath("gloopblocks") ~= nil
 
 sickles.register_cuttable("default:dirt_with_grass", "default:dirt", "default:grass_1")
 sickles.register_cuttable("default:dirt_with_dry_grass", "default:dirt", "default:dry_grass_1")
@@ -30,10 +31,6 @@ if mod_stairs then
 	sickles.register_cuttable("stairs:stair_mossycobble", "stairs:stair_cobble", "sickles:moss")
 	sickles.register_cuttable("stairs:stair_inner_mossycobble", "stairs:stair_inner_cobble", "sickles:moss")
 	sickles.register_cuttable("stairs:stair_outer_mossycobble", "stairs:stair_outer_cobble", "sickles:moss")
-end
-
-if mod_farming then
-	sickles.register_trimmable("farming:wheat_8", "farming:wheat_2")
 end
 
 if mod_footprints then
@@ -58,6 +55,10 @@ if mod_woodsoils then
 	sickles.register_cuttable("woodsoils:grass_with_leaves_2", "default:dirt", "default:grass_1")
 end
 
+if mod_farming then
+	sickles.register_trimmable("farming:wheat_8", "farming:wheat_2")
+end
+
 if mod_farming and farming ~= nil and farming.mod == "redo" then
 	sickles.register_trimmable("farming:rye_8", "farming:rye_2")
 	sickles.register_trimmable("farming:oat_8", "farming:oat_2")
@@ -73,7 +74,7 @@ if mod_grains then
 end
 
 if mod_cucina_vegana then
-	sickles.register_trimmable("cucina_vegana:rice_6", "grains:rice_2")
+	sickles.register_trimmable("cucina_vegana:rice_6", "cucina_vegana:rice_2")
 end
 
 if mod_caverealms then
@@ -106,4 +107,25 @@ if mod_ethereal then
 	sickles.register_cuttable("ethereal:jungle_dirt", "default:dirt", "default:junglegrass")
 	sickles.register_cuttable("ethereal:mushroom_dirt", "default:dirt", "flowers:mushroom_red")
 	sickles.register_cuttable("ethereal:prairie_dirt", "default:dirt", "sickles:petals")
+end
+
+if mod_gloopblocks then
+	sickles.register_cuttable("gloopblocks:stone_brick_mossy", "default:stonebrick", "sickles:moss")
+	sickles.register_cuttable("gloopblocks:stone_mossy", "default:stone", "sickles:moss")
+	sickles.register_cuttable("gloopblocks:cobble_road_mossy", "gloopblocks:cobble_road", "sickles:moss")
+end
+
+if mod_gloopblocks and mod_stairs then
+	sickles.register_cuttable("stairs:stair_stone_mossy", "stairs:stair_stone", "sickles:moss")
+	sickles.register_cuttable("stairs:stair_inner_stone_mossy", "stairs:stair_inner_stone", "sickles:moss")
+	sickles.register_cuttable("stairs:stair_outer_stone_mossy", "stairs:stair_outer_stone", "sickles:moss")
+	sickles.register_cuttable("stairs:slab_stone_mossy", "stairs:slab_stone", "sickles:moss")
+	sickles.register_cuttable("stairs:stair_stone_brick_mossy", "stairs:stair_stonebrick", "sickles:moss")
+	sickles.register_cuttable("stairs:stair_inner_stone_brick_mossy", "stairs:stair_inner_stonebrick", "sickles:moss")
+	sickles.register_cuttable("stairs:stair_outer_stone_brick_mossy", "stairs:stair_outer_stonebrick", "sickles:moss")
+	sickles.register_cuttable("stairs:slab_stone_brick_mossy", "stairs:slab_stonebrick", "sickles:moss")
+	sickles.register_cuttable("stairs:stair_cobble_road_mossy", "stairs:stair_cobble_road", "sickles:moss")
+	sickles.register_cuttable("stairs:stair_inner_cobble_road_mossy", "stairs:stair_inner_cobble_road", "sickles:moss")
+	sickles.register_cuttable("stairs:stair_outer_cobble_road_mossy", "stairs:stair_outer_cobble_road", "sickles:moss")
+	sickles.register_cuttable("stairs:slab_cobble_road_mossy", "stairs:slab_cobble_road", "sickles:moss")
 end
