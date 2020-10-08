@@ -23,6 +23,14 @@ local node_box = {
 	wall_bottom = { -0.5, -0.5, -0.5, 0.5, -0.45, 0.5 }
 }
 
+local function register_stairs(subname, recipeitem, groups, images, desc_stair, desc_slab, desc_slope, snds, wat)
+	if not mod_stairs then return end
+	stairs.register_stair_and_slab(subname, recipeitem, groups, images, desc_stair, desc_slab, snds, wat)
+	if stairs.mod == "redo" then
+		stairs.register_slope(subname, recipeitem, groups, images, desc_slope, snds, wat)
+	end
+end
+
 for _, color in ipairs(colors) do
 	local name_suffix = ""
 	local display_name_prefix = ""
@@ -64,19 +72,16 @@ for _, color in ipairs(colors) do
 		sounds = sounds
 	})
 
-	if mod_stairs then
-		local register_stairs = stairs.register_stair_and_slab
-		if stairs.mod == "redo" then register_stairs = stairs.register_all end
-		register_stairs(
-			"moss_block" .. name_suffix,
-			"sickles:moss_block" .. name_suffix,
-			{ snappy = 3, flammable = 2, fall_damage_add_percent = -80 },
-			{ "default_moss.png" .. texture_overlay },
-			S(display_name_prefix .. "Moss Stair"),
-			S(display_name_prefix .. "Moss Slab"),
-			sounds
-		)
-	end
+	register_stairs(
+		"moss_block" .. name_suffix,
+		"sickles:moss_block" .. name_suffix,
+		{ snappy = 3, flammable = 2, fall_damage_add_percent = -80 },
+		{ "default_moss.png" .. texture_overlay },
+		S(display_name_prefix .. "Moss Stair"),
+		S(display_name_prefix .. "Moss Slab"),
+		S(display_name_prefix .. "Moss Slope"),
+		sounds
+	)
 
 	minetest.register_craft({
 		output = "sickles:moss_block" .. name_suffix .. " 3",
