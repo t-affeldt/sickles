@@ -135,6 +135,8 @@ local function harvest_and_replant(pos, player)
 		else
 			-- plant seeds for MTG farming
 			minetest.set_node(pos, { name = seeds, param2 = 1 })
+			-- timer values taken from farming mod (see tick function in api.lua)
+			minetest.get_node_timer(pos):start(math.random(166, 286))
 		end
 	end)
 	return true
