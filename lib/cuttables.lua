@@ -106,7 +106,7 @@ if mod_ethereal then
    sickles.register_cuttable("ethereal:fiery_dirt", "default:dirt", "ethereal:dry_shrub")
    sickles.register_cuttable("ethereal:gray_dirt", "default:dirt", "ethereal:snowygrass")
    sickles.register_cuttable("ethereal:grove_dirt", "default:dirt", "sickles:moss")
-   sickles.register_cuttable("ethereal:dry_dirt", "default:dirt", "default:coal")
+   sickles.register_cuttable("ethereal:dry_dirt", "default:dirt", "default:coal_lump")
    sickles.register_cuttable("ethereal:jungle_dirt", "default:dirt", "default:junglegrass")
    sickles.register_cuttable("ethereal:mushroom_dirt", "default:dirt", "ethereal:mushroom_sapling")
    sickles.register_cuttable("ethereal:prairie_dirt", "default:dirt", "sickles:petals")
