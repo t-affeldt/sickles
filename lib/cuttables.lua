@@ -13,6 +13,7 @@ local mod_df_mapitems = minetest.get_modpath("df_mapitems") ~= nil
 local mod_df_primordial_items = minetest.get_modpath("df_primordial_items") ~= nil
 local mod_ethereal = minetest.get_modpath("ethereal") ~= nil
 local mod_gloopblocks = minetest.get_modpath("gloopblocks") ~= nil
+local mod_underch = minetest.get_modpath("underch") ~= nil
 
 sickles.register_cuttable("default:dirt_with_grass", "default:dirt", "default:grass_1")
 sickles.register_cuttable("default:dirt_with_dry_grass", "default:dirt", "default:dry_grass_1")
@@ -101,12 +102,13 @@ end
 if mod_ethereal then
    sickles.register_cuttable("ethereal:bamboo_dirt", "default:dirt", "default:grass_1")
    sickles.register_cuttable("ethereal:cold_dirt", "default:dirt", "default:grass_1")
-   sickles.register_cuttable("ethereal:crystal_dirt", "default:dirt", "ethereal:crytalgrass")
+   sickles.register_cuttable("ethereal:crystal_dirt", "default:dirt", "ethereal:crystalgrass")
    sickles.register_cuttable("ethereal:fiery_dirt", "default:dirt", "ethereal:dry_shrub")
    sickles.register_cuttable("ethereal:gray_dirt", "default:dirt", "ethereal:snowygrass")
-   sickles.register_cuttable("ethereal:grovel_dirt", "default:dirt", "sickles:moss")
+   sickles.register_cuttable("ethereal:grove_dirt", "default:dirt", "sickles:moss")
+   sickles.register_cuttable("ethereal:dry_dirt", "default:dirt", "default:coal")
    sickles.register_cuttable("ethereal:jungle_dirt", "default:dirt", "default:junglegrass")
-   sickles.register_cuttable("ethereal:mushroom_dirt", "default:dirt", "flowers:mushroom_red")
+   sickles.register_cuttable("ethereal:mushroom_dirt", "default:dirt", "ethereal:mushroom_sapling")
    sickles.register_cuttable("ethereal:prairie_dirt", "default:dirt", "sickles:petals")
    sickles.register_cuttable("ethereal:onion_5", "ethereal:onion_1")
    sickles.register_cuttable("ethereal:strawberry_8", "ethereal:strawberry_1")
@@ -131,4 +133,10 @@ if mod_gloopblocks and mod_stairs then
    sickles.register_cuttable("stairs:stair_inner_cobble_road_mossy", "stairs:stair_inner_cobble_road", "sickles:moss")
    sickles.register_cuttable("stairs:stair_outer_cobble_road_mossy", "stairs:stair_outer_cobble_road", "sickles:moss")
    sickles.register_cuttable("stairs:slab_cobble_road_mossy", "stairs:slab_cobble_road", "sickles:moss")
+end
+
+
+if mod_underch then
+   sickles.register_cuttable("underch:mossy_dirt", "default:dirt", "sickles:moss")
+   sickles.register_cuttable("underch:mossy_gravel", "default:gravel", "sickles:moss")
 end
