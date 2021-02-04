@@ -56,7 +56,8 @@ if mod_woodsoils then
 end
 
 if mod_farming then
-	sickles.register_trimmable("farming:wheat_8", "farming:wheat_2")
+   sickles.register_trimmable("farming:wheat_8", "farming:wheat_2")
+   sickles.register_trimmable("farming:cotton_8", "farming:cotton_2")
 end
 
 if mod_farming and farming ~= nil and farming.mod == "redo" then
@@ -107,6 +108,8 @@ if mod_ethereal then
 	sickles.register_cuttable("ethereal:jungle_dirt", "default:dirt", "default:junglegrass")
 	sickles.register_cuttable("ethereal:mushroom_dirt", "default:dirt", "flowers:mushroom_red")
 	sickles.register_cuttable("ethereal:prairie_dirt", "default:dirt", "sickles:petals")
+	sickles.register_cuttable("ethereal:onion_5", "ethereal:onion_1")
+	sickles.register_cuttable("ethereal:strawberry_8", "ethereal:strawberry_1")
 end
 
 if mod_gloopblocks then
