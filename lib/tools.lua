@@ -91,7 +91,7 @@ minetest.register_tool("sickles:scythe_bronze", {
 	},
 	range = 12,
 	on_use = sickles.use_scythe,
-	groups = { scythe = 2, scythe_uses = 25 },
+	groups = { scythe = 2, scythe_uses = 100 },
 	sound = { breaks = "default_tool_breaks" }
 })
 
@@ -114,7 +114,7 @@ minetest.register_tool("sickles:scythe_steel", {
 	},
 	range = 12,
 	on_use = sickles.use_scythe,
-	groups = { scythe = 2, scythe_uses = 30 },
+	groups = { scythe = 2, scythe_uses = 200 },
 	sound = { breaks = "default_tool_breaks" }
 })
 
