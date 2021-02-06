@@ -132,8 +132,8 @@ if mod_ethereal then
    sickles.register_cuttable("ethereal:jungle_dirt", "default:dirt", "default:junglegrass")
    sickles.register_cuttable("ethereal:mushroom_dirt", "default:dirt", "ethereal:mushroom_sapling")
    sickles.register_cuttable("ethereal:prairie_dirt", "default:dirt", "sickles:petals")
-   sickles.register_cuttable("ethereal:onion_5", "ethereal:onion_1")
-   sickles.register_cuttable("ethereal:strawberry_8", "ethereal:strawberry_1")
+   sickles.register_cuttable("ethereal:onion_5", "ethereal:onion_1", "ethereal:wild_onion_plant")
+   sickles.register_cuttable("ethereal:strawberry_8", "ethereal:strawberry_1", "ethereal:strawberry")
 end
 
 if mod_gloopblocks then
