@@ -88,6 +88,10 @@ if mod_farming and farming ~= nil and farming.mod == "redo" then
    sickles.register_trimmable("farming:blackberry_4", "farming:blackberry_1")
    sickles.register_trimmable("farming:chili_8", "farming:chili_1")
    sickles.register_trimmable("farming:melon_8", "farming:melon_1")
+   sickles.register_trimmable("farming:pumpkin_8", "farming:pumpkin_1")
+   sickles.register_trimmable("farming:soy_7", "farming:soy_1")
+   sickles.register_trimmable("farming:mint_4", "farming:mint_1")
+   sickles.register_trimmable("farming:onion_5", "farming:onion_1")
 end
 
 if mod_grains then
@@ -130,7 +134,7 @@ if mod_ethereal then
    sickles.register_cuttable("ethereal:grove_dirt", "default:dirt", "sickles:moss")
    sickles.register_cuttable("ethereal:dry_dirt", "default:dirt", "default:coal_lump")
    sickles.register_cuttable("ethereal:jungle_dirt", "default:dirt", "default:junglegrass")
-   sickles.register_cuttable("ethereal:mushroom_dirt", "default:dirt", "ethereal:mushroom_sapling")
+   sickles.register_cuttable("ethereal:mushroom_dirt", "default:dirt", "flowers:mushroom_red")
    sickles.register_cuttable("ethereal:prairie_dirt", "default:dirt", "sickles:petals")
    sickles.register_cuttable("ethereal:onion_5", "ethereal:onion_1", "ethereal:wild_onion_plant")
    sickles.register_cuttable("ethereal:strawberry_8", "ethereal:strawberry_1", "ethereal:strawberry")
