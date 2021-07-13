@@ -10,7 +10,7 @@ minetest.register_tool("sickles:sickle_bronze", {
 		full_punch_interval = 0.8,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = { times = { [1] = 2.75, [2] = 1.30, [3] = 0.375 }, uses = 60, maxlevel = 2 }
+			snappy = { times = { [1] = 2.75, [2] = 1.30, [3] = 0.375 }, uses = 100, maxlevel = 2 }
 		},
 		damage_groups = { fleshy = 3 },
 		punch_attack_uses = 110
@@ -36,7 +36,7 @@ minetest.register_tool("sickles:sickle_steel", {
 		full_punch_interval = 0.8,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = { times = { [1] = 2.5, [2] = 1.20, [3] = 0.35 }, uses = 60, maxlevel = 2 }
+			snappy = { times = { [1] = 2.5, [2] = 1.20, [3] = 0.35 }, uses = 150, maxlevel = 2 }
 		},
 		damage_groups = { fleshy = 3 },
 		punch_attack_uses = 120
@@ -62,7 +62,7 @@ minetest.register_tool("sickles:sickle_gold", {
 		full_punch_interval = 0.8,
 		max_drop_level = 1,
 		groupcaps = {
-			snappy = { times = { [1] = 2.0, [2] = 1.00, [3] = 0.35 }, uses = 45, maxlevel = 3 }
+			snappy = { times = { [1] = 2.0, [2] = 1.00, [3] = 0.35 }, uses = 200, maxlevel = 3 }
 		},
 		damage_groups = { fleshy = 2 },
 		punch_attack_uses = 90
@@ -91,7 +91,7 @@ minetest.register_tool("sickles:scythe_bronze", {
 	},
 	range = 12,
 	on_use = sickles.use_scythe,
-	groups = { scythe = 2, scythe_uses = 25 },
+	groups = { scythe = 2, scythe_uses = 100 },
 	sound = { breaks = "default_tool_breaks" }
 })
 
@@ -114,7 +114,7 @@ minetest.register_tool("sickles:scythe_steel", {
 	},
 	range = 12,
 	on_use = sickles.use_scythe,
-	groups = { scythe = 2, scythe_uses = 30 },
+	groups = { scythe = 2, scythe_uses = 200 },
 	sound = { breaks = "default_tool_breaks" }
 })
 

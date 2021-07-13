@@ -1,7 +1,7 @@
 # Scythes & Sickles
 Adds scythes and sickles with unique applications for farming
 
-![](https://raw.githubusercontent.com/t-affeldt/sickles/master/screenshot.png)
+![screenshot](screenshot.png)
 
 Scythes allow you to quickly sweep through your fields. They can only break fully grown crops and harvest multiple plants at once.
 They also replant harvested crops automatically. Alternatively, they can be used as an effective weapon with higher range.
