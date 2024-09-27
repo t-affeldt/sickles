@@ -13,6 +13,7 @@ local mod_df_mapitems = minetest.get_modpath("df_mapitems") ~= nil
 local mod_df_primordial_items = minetest.get_modpath("df_primordial_items") ~= nil
 local mod_ethereal = minetest.get_modpath("ethereal") ~= nil
 local mod_gloopblocks = minetest.get_modpath("gloopblocks") ~= nil
+local mod_underch = minetest.get_modpath("underch") ~= nil
 
 sickles.register_cuttable("default:dirt_with_grass", "default:dirt", "default:grass_1")
 sickles.register_cuttable("default:dirt_with_dry_grass", "default:dirt", "default:dry_grass_1")
@@ -129,3 +130,8 @@ if mod_gloopblocks and mod_stairs then
 	sickles.register_cuttable("stairs:stair_outer_cobble_road_mossy", "stairs:stair_outer_cobble_road", "sickles:moss")
 	sickles.register_cuttable("stairs:slab_cobble_road_mossy", "stairs:slab_cobble_road", "sickles:moss")
 end
+
+if mod_underch then
+	sickles.register_cuttable("underch:mossy_dirt", "default:dirt", "sickles:moss")
+	sickles.register_cuttable("underch:mossy_gravel", "default:gravel", "sickles:moss")
+ end
