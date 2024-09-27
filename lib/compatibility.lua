@@ -44,7 +44,7 @@ if mod_cottages then
 
 	local groups = minetest.registered_tools["cottages:pitchfork"].groups
 	groups.sickle = 1
-	groups.sickle_uses = 12
+	groups.sickle_uses = 120
 	minetest.override_item("cottages:pitchfork", {
 		groups = groups
 	})
