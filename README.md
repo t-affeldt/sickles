@@ -36,7 +36,7 @@ They also let you to cut wheat and other grains more precisely, allowing you to 
 - can be dyed in any of it's four natural colors
 
 ## License Information
-The entire source code is written by me and licensed under *GNU LGPL v3*. You can find the complete license information
+The entire source code is written by Till Affeldt and licensed under *GNU LGPL v3*. You can find the complete license information
 in the supplied license file.
 Textures for tools and moss items are made by Cap for this mod and licensed under *CC BY-SA 3.0*.
 Textures for placed moss node and flower petals are by Vanessa Ezekowitz under *CC BY-SA 4.0* for her [plantlife modpack](https://forum.minetest.net/viewtopic.php?t=3898).
