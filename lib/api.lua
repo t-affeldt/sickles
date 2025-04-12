@@ -75,6 +75,8 @@ function sickles.register_trimmable(node, base)
 			end
 			local param2 = minetest.registered_nodes[base].place_param2
 			minetest.set_node(pos, { name = base, param2 = param2 })
+			-- timer values taken from farming mod (see tick function in api.lua)
+			minetest.get_node_timer(pos):start(math.random(166, 286))
 		end
 	})
 end
