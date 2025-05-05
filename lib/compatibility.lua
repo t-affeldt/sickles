@@ -3,6 +3,7 @@ local mod_bonemeal = minetest.get_modpath("bonemeal") ~= nil
 local mod_trunks = minetest.get_modpath("trunks") ~= nil
 local mod_cottages = minetest.get_modpath("cottages") ~= nil
 local mod_gloopblocks = minetest.get_modpath("gloopblocks") ~= nil
+local mod_mcl_bone_meal = minetest.get_modpath("mcl_bone_meal") ~= nil
 
 -- turn moss into fertilizer by cooking
 if mod_bonemeal then
@@ -10,6 +11,14 @@ if mod_bonemeal then
 		type = "cooking",
 		cooktime = 9,
 		output = "bonemeal:fertiliser",
+		recipe = "group:moss"
+	})
+end
+if mod_mcl_bone_meal then
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 9,
+		output = "mcl_bone_meal:bone_meal",
 		recipe = "group:moss"
 	})
 end

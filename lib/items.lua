@@ -1,5 +1,14 @@
 local mod_stairs = minetest.get_modpath("stairs") ~= nil
+local mod_mcl_stairs = minetest.get_modpath("mcl_stairs") ~= nil
 local mod_dye = minetest.get_modpath("dye") ~= nil
+local mod_mcl_dyes = minetest.get_modpath("mcl_dyes") ~= nil
+local mod_mcl_lush_caves = minetest.get_modpath("mcl_lush_caves") ~= nil
+local mod_mcl_sounds = minetest.get_modpath("mcl_sounds") ~= nil
+
+local default_moss_png = "default_moss.png"
+if mod_mcl_lush_caves then
+	default_moss_png = "mcl_lush_caves_moss.png"
+end
 
 local S = sickles.i18n
 
@@ -10,11 +19,20 @@ local colors = {
 	{ hex = "#bcc56770", name = "yellow", dye = "yellow" }
 }
 
-local sounds = default.node_sound_leaves_defaults({
+local sounds
+if mod_mcl_sounds then
+sounds = mcl_sounds.node_sound_leaves_defaults({
 	footstep = "default_grass_footstep",
 	dug = "sickles_moss_dug",
 	place = "sickles_moss_dug"
 })
+else
+sounds = default.node_sound_leaves_defaults({
+	footstep = "default_grass_footstep",
+	dug = "sickles_moss_dug",
+	place = "sickles_moss_dug"
+})
+end
 
 local node_box = {
 	type = "wallmounted",
@@ -24,6 +42,15 @@ local node_box = {
 }
 
 local function register_stairs(subname, recipeitem, groups, images, desc_stair, desc_slab, desc_slope, snds, wat)
+	if mod_mcl_stairs then
+	mcl_stairs.register_stair_and_slab(subname, {
+		baseitem = recipeitem,
+		description_stair = desc_stair,
+		description_slab = desc_slab,
+		groups = groups,
+		sounds = snds
+	})
+	end
 	if not mod_stairs then return end
 	stairs.register_stair_and_slab(subname, recipeitem, groups, images, desc_stair, desc_slab, snds, wat)
 	if stairs.mod == "redo" then
@@ -66,7 +93,7 @@ for _, color in ipairs(colors) do
 
 	minetest.register_node("sickles:moss_block" .. name_suffix, {
 		description = S(display_name_prefix .. "Moss Block"),
-		tiles = { "default_moss.png" .. texture_overlay },
+		tiles = { default_moss_png .. texture_overlay },
 		is_ground_content = false,
 		groups = { snappy = 3, moss_block = 1, flammable = 2, fall_damage_add_percent = -80 },
 		sounds = sounds
@@ -76,7 +103,7 @@ for _, color in ipairs(colors) do
 		"moss_block" .. name_suffix,
 		"sickles:moss_block" .. name_suffix,
 		{ snappy = 3, flammable = 2, fall_damage_add_percent = -80 },
-		{ "default_moss.png" .. texture_overlay },
+		{ default_moss_png .. texture_overlay },
 		S(display_name_prefix .. "Moss Stair"),
 		S(display_name_prefix .. "Moss Slab"),
 		S(display_name_prefix .. "Moss Slope"),
@@ -109,6 +136,18 @@ for _, color in ipairs(colors) do
 			recipe = {{ "sickles:moss" .. name_suffix }}
 		})
 	end
+	if mod_mcl_dyes then
+		minetest.register_craft({
+			type = "shapeless",
+			output = "sickles:moss_block" .. name_suffix,
+			recipe = { "group:moss_block", "mcl_dyes:" .. color.dye }
+		})
+
+		minetest.register_craft({
+			output = "mcl_dyes:" .. color.dye,
+			recipe = {{ "sickles:moss" .. name_suffix }}
+		})
+	end
 end
 
 minetest.register_craft({
@@ -123,6 +162,12 @@ minetest.register_craft({
 	burntime = 18
 })
 
+local use_sounds
+if mod_mcl_sounds then
+	use_sounds = mcl_sounds.node_sound_leaves_defaults()
+else
+	use_sounds = default.node_sound_leaves_defaults()
+end
 minetest.register_node("sickles:petals", {
 	description = S("Flower Petals"),
 	tiles = { "nature_blossom.png" },
@@ -130,7 +175,7 @@ minetest.register_node("sickles:petals", {
 	wield_image = "nature_blossom.png",
 	is_ground_content = false,
 	groups = { snappy = 3, attached_node = 1 },
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = use_sounds,
 	use_texture_alpha = true,
 	drawtype = "signlike",
 	paramtype = "light",

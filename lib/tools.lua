@@ -1,8 +1,136 @@
 local is_farming_redo = minetest.get_modpath("farming") ~= nil
 		and farming ~= nil and farming.mod == "redo"
+local mod_mcl_core = minetest.get_modpath("mcl_core") ~= nil
+local mod_mcl_copper = minetest.get_modpath("mcl_copper") ~= nil
 
 local S = sickles.i18n
 
+if mod_mcl_core then
+minetest.register_tool("sickles:sickle_gold", {
+	description = S("Golden Sickle"),
+	inventory_image = "sickles_sickle_gold.png",
+	tool_capabilities = {
+		full_punch_interval = 0.8,
+		max_drop_level = 1,
+		groupcaps = {
+			snappy = { times = { [1] = 2.0, [2] = 1.00, [3] = 0.35 }, uses = 80, maxlevel = 3 }
+		},
+		damage_groups = { fleshy = 2 },
+		punch_attack_uses = 80
+	},
+	range = 6,
+	groups = { sickle = 1, sickle_uses = 160 },
+	sound = { breaks = "default_tool_breaks" }
+})
+
+minetest.register_craft({
+	output = "sickles:sickle_gold",
+	recipe = {
+		{ "mcl_core:gold_ingot", "" },
+		{ "", "mcl_core:gold_ingot" },
+		{ "group:stick", "" }
+	}
+})
+
+minetest.register_tool("sickles:sickle_iron", {
+	description = S("Iron Sickle"),
+	inventory_image = "sickles_sickle_steel.png",
+	tool_capabilities = {
+		full_punch_interval = 0.8,
+		max_drop_level = 1,
+		groupcaps = {
+			snappy = { times = { [1] = 2.5, [2] = 1.20, [3] = 0.35 }, uses = 150, maxlevel = 2 }
+		},
+		damage_groups = { fleshy = 3 },
+		punch_attack_uses = 150
+	},
+	range = 6,
+	groups = { sickle = 1, sickle_uses = 300 },
+	sound = { breaks = "default_tool_breaks" }
+})
+
+minetest.register_craft({
+	output = "sickles:sickle_iron",
+	recipe = {
+		{ "mcl_core:iron_ingot", "" },
+		{ "", "mcl_core:iron_ingot" },
+		{ "group:stick", "" }
+	}
+})
+
+minetest.register_tool("sickles:sickle_copper", {
+	description = S("Copper Sickle"),
+	inventory_image = "sickles_sickle_bronze.png",
+	tool_capabilities = {
+		full_punch_interval = 0.8,
+		max_drop_level = 1,
+		groupcaps = {
+			snappy = { times = { [1] = 2.75, [2] = 1.30, [3] = 0.375 }, uses = 100, maxlevel = 2 }
+		},
+		damage_groups = { fleshy = 3 },
+		punch_attack_uses = 100
+	},
+	range = 6,
+	groups = { sickle = 1, sickle_uses = 200 },
+	sound = { breaks = "default_tool_breaks" }
+})
+
+minetest.register_craft({
+	output = "sickles:sickle_copper",
+	recipe = {
+		{ "mcl_copper:copper_ingot", "" },
+		{ "", "mcl_copper:copper_ingot" },
+		{ "group:stick", "" }
+	}
+})
+
+minetest.register_tool("sickles:scythe_copper", {
+	description = S("Copper Scythe"),
+	inventory_image = "sickles_scythe_bronze.png",
+	tool_capabilities = {
+		full_punch_interval = 1.2,
+		damage_groups = { fleshy = 5 },
+		punch_attack_uses = 200
+	},
+	range = 12,
+	on_use = sickles.use_scythe,
+	groups = { scythe = 2, scythe_uses = 100 },
+	sound = { breaks = "default_tool_breaks" }
+})
+
+minetest.register_craft({
+	output = "sickles:scythe_copper",
+	recipe = {
+		{ "", "mcl_copper:copper_ingot", "mcl_copper:copper_ingot" },
+		{ "mcl_copper:copper_ingot", "", "group:stick" },
+		{ "", "", "group:stick" }
+	}
+})
+
+minetest.register_tool("sickles:scythe_iron", {
+	description = S("Iron Scythe"),
+	inventory_image = "sickles_scythe_steel.png",
+	tool_capabilities = {
+		full_punch_interval = 1.2,
+		damage_groups = { fleshy = 5 },
+		punch_attack_uses = 300
+	},
+	range = 12,
+	on_use = sickles.use_scythe,
+	groups = { scythe = 2, scythe_uses = 150 },
+	sound = { breaks = "default_tool_breaks" }
+})
+
+minetest.register_craft({
+	output = "sickles:scythe_iron",
+	recipe = {
+		{ "", "mcl_core:iron_ingot", "mcl_core:iron_ingot" },
+		{ "mcl_core:iron_ingot", "", "group:stick" },
+		{ "", "", "group:stick" }
+	}
+})
+
+else -- for minetest_game
 minetest.register_tool("sickles:sickle_bronze", {
 	description = S("Bronze Sickle"),
 	inventory_image = "sickles_sickle_bronze.png",
@@ -126,6 +254,7 @@ minetest.register_craft({
 		{ "", "", "group:stick" }
 	}
 })
+end
 
 if is_farming_redo then
 	-- softly disable mithril scythe to prevent confusion

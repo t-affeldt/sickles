@@ -14,7 +14,15 @@ local mod_df_primordial_items = minetest.get_modpath("df_primordial_items") ~= n
 local mod_ethereal = minetest.get_modpath("ethereal") ~= nil
 local mod_gloopblocks = minetest.get_modpath("gloopblocks") ~= nil
 local mod_underch = minetest.get_modpath("underch") ~= nil
+local mod_mcl_core = minetest.get_modpath("mcl_core") ~= nil
+local mod_mcl_walls = minetest.get_modpath("mcl_walls") ~= nil
+local mod_mcl_stairs = minetest.get_modpath("mcl_stairs") ~= nil
+local mod_mcl_farming = minetest.get_modpath("mcl_farming") ~= nil
 
+if mod_mcl_core then
+sickles.register_cuttable("mcl_core:dirt_with_grass", "mcl_core:dirt", "mcl_flowers:double_grass")
+sickles.register_cuttable("mcl_core:mossycobble", "mcl_core:cobble", "sickles:moss")
+else -- default
 sickles.register_cuttable("default:dirt_with_grass", "default:dirt", "default:grass_1")
 sickles.register_cuttable("default:dirt_with_dry_grass", "default:dirt", "default:dry_grass_1")
 sickles.register_cuttable("default:dry_dirt_with_dry_grass", "default:dry_dirt", "default:dry_grass_1")
@@ -22,11 +30,21 @@ sickles.register_cuttable("default:dirt_with_rainforest_litter", "default:dirt",
 sickles.register_cuttable("default:dirt_with_coniferous_litter", "default:dirt", "default:dry_grass_1")
 sickles.register_cuttable("default:permafrost_with_moss", "default:permafrost", "sickles:moss")
 sickles.register_cuttable("default:mossycobble", "default:cobble", "sickles:moss")
+end
 
+if mod_mcl_walls then
+	sickles.register_cuttable("mcl_walls:mossycobble", "mcl_walls:cobble", "sickles:moss")
+end
 if mod_walls then
 	sickles.register_cuttable("walls:mossycobble", "walls:cobble", "sickles:moss")
 end
 
+if mod_mcl_stairs then
+	sickles.register_cuttable("mcl_stairs:slab_mossycobble", "mcl_stairs:slab_cobble", "sickles:moss")
+	sickles.register_cuttable("mcl_stairs:stair_mossycobble", "mcl_stairs:stair_cobble", "sickles:moss")
+	sickles.register_cuttable("mcl_stairs:stair_inner_mossycobble", "mcl_stairs:stair_inner_cobble", "sickles:moss")
+	sickles.register_cuttable("mcl_stairs:stair_outer_mossycobble", "mcl_stairs:stair_outer_cobble", "sickles:moss")
+end
 if mod_stairs then
 	sickles.register_cuttable("stairs:slab_mossycobble", "stairs:slab_cobble", "sickles:moss")
 	sickles.register_cuttable("stairs:stair_mossycobble", "stairs:stair_cobble", "sickles:moss")
@@ -56,6 +74,10 @@ if mod_woodsoils then
 	sickles.register_cuttable("woodsoils:grass_with_leaves_2", "default:dirt", "default:dry_grass_1")
 end
 
+if mod_mcl_farming then
+	sickles.register_trimmable("mcl_farming:wheat", "mcl_farming:wheat_2")
+	-- one does not use a sickle for beetroots, pumpkins, or melons
+end
 if mod_farming then
 	sickles.register_trimmable("farming:wheat_8", "farming:wheat_2")
 end

@@ -41,3 +41,7 @@ in the supplied license file.
 Textures for tools and moss items are made by Cap for this mod and licensed under *CC BY-SA 3.0*.
 Textures for placed moss node and flower petals are by Vanessa Ezekowitz under *CC BY-SA 4.0* for her [plantlife modpack](https://forum.minetest.net/viewtopic.php?t=3898).
 The sound effect for placing or breaking moss blocks is made by DrMinky under *CC BY 3.0* and can be found on [FreeSound](https://freesound.org/people/DrMinky/sounds/167073/).
+
+## Changes
+
+* Now supports [Mineclonia](https://content.luanti.org/packages/ryvnf/mineclonia/)!

@@ -1,5 +1,6 @@
 local is_farming_redo = minetest.get_modpath("farming") ~= nil
 		and farming ~= nil and farming.mod == "redo"
+local mod_mcl_farming = minetest.get_modpath("mcl_farming") ~= nil
 
 local MAX_ITEM_WEAR = 65535
 local DEFAULT_SICKLE_USES = 120
@@ -43,7 +44,15 @@ function sickles.register_cuttable(nodename, base, item)
 				minetest.record_protection_violation(pos, pname)
 				return
 			end
-			minetest.handle_node_drops(pos, { item }, puncher)
+			if mod_mcl_farming and item == "sickles:moss" then
+				-- for some reason mineclonia does not want to drop moss, so just add to player inventory
+				local invref = puncher:get_inventory()
+				if invref:room_for_item("main", item) then
+					invref:add_item("main", item)
+				end
+			else
+				minetest.handle_node_drops(pos, { item }, puncher)
+			end
 			minetest.after(0, function()
 				minetest.swap_node(pos, { name = base, param2 = node.param2 })
 			end)
@@ -75,6 +84,8 @@ function sickles.register_trimmable(node, base)
 			end
 			local param2 = minetest.registered_nodes[base].place_param2
 			minetest.set_node(pos, { name = base, param2 = param2 })
+			-- timer values taken from farming mod (see tick function in api.lua)
+			minetest.get_node_timer(pos):start(math.random(166, 286))
 		end
 	})
 end
@@ -86,6 +97,10 @@ local function get_plant_definition(plant)
 		local mod = plant:split(":")[1] or ""
 		local name = plant:split(":")[2] or ""
 		local pname = name:gsub("(.*)_.*$", "%1")
+		if mod_mcl_farming then
+			-- from mineclonia/mods/ITEMS/mcl_farming/shared_functions.lua
+			return mcl_farming.plant_lists["plant_" .. pname]
+		end
 		return farming.registered_plants[pname]
 	end
 end
@@ -94,6 +109,9 @@ local function get_seed_name(plant)
 	if is_farming_redo then
 		return farming.registered_plants[plant].seed
 	else
+		if mod_mcl_farming then
+			return plant .. "_seeds"
+		end
 		local mod = plant:split(":")[1]
 		local name = plant:split(":")[2]
 		local pname = name:gsub("(.*)_.*$", "%1")
@@ -104,11 +122,27 @@ end
 local function harvest_and_replant(pos, player)
 	local playername = player:get_player_name()
 	local node = minetest.get_node(pos)
-	local node_id = node.name:gsub("(.*)_.*$", "%1")
+	local node_id
+	if mod_mcl_farming then
+		node_id = node.name
+	else
+		node_id = node.name:gsub("(.*)_.*$", "%1")
+	end
 	local stage = tonumber(node.name:gsub(".*_(.*)$", "%1") or 0)
 	local plantdef = get_plant_definition(node_id)
-	if plantdef == nil or plantdef.steps == nil or stage < plantdef.steps then
+	if plantdef == nil then
 		return false
+	end
+	if mod_mcl_farming then
+		if plantdef.full_grown == nil then
+			return false
+		elseif plantdef.full_grown == node_id then else
+			return false
+		end
+	else
+		if plantdef.steps == nil or stage < plantdef.steps then
+			return false
+		end
 	end
 	if minetest.is_protected(pos, playername) then
 		minetest.record_protection_violation(pos, playername)
@@ -133,8 +167,20 @@ local function harvest_and_replant(pos, player)
 			if crop_def == nil then return end
 			minetest.set_node(pos, { name = crop_name, param2 = crop_def.place_param2 })
 		else
-			-- plant seeds for MTG farming
-			minetest.set_node(pos, { name = seeds, param2 = 1 })
+			-- plant seeds for MTG and Mineclonia farming
+			if mod_mcl_farming then
+				local level1 = node_id .. "_1"
+				-- keep the same paramtype2 = "meshoptions" from lua_api.md
+				minetest.set_node(pos, { name = level1, param2 = node.param2 })
+				-- need to remove seed again for Mineclonia, because it dropped seeds.
+				minetest.after(0,function()
+					if not is_creative(playername) then
+						invref:remove_item("main", seeds)
+					end
+				end)
+			else
+				minetest.set_node(pos, { name = seeds, param2 = 1 })
+			end
 			-- timer values taken from farming mod (see tick function in api.lua)
 			minetest.get_node_timer(pos):start(math.random(166, 286))
 		end
