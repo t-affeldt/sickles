@@ -105,7 +105,7 @@ local function harvest_and_replant(pos, player)
 	local playername = player:get_player_name()
 	local node = minetest.get_node(pos)
 	local node_id = node.name:gsub("(.*)_.*$", "%1")
-	local stage = tonumber(node.name:gsub(".*_(.*)$", "%1") or 0)
+	local stage = tonumber(node.name:match("_(%d+)$")) or 0
 	local plantdef = get_plant_definition(node_id)
 	if plantdef == nil or plantdef.steps == nil or stage < plantdef.steps then
 		return false
